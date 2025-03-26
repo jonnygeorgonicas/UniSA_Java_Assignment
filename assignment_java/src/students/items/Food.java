@@ -12,4 +12,3 @@ public abstract class Food extends Item {
     }
 
 }
-// up casting and down casting for the assignment is needed
