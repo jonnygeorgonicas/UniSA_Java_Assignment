@@ -17,4 +17,14 @@ public abstract class Food extends Item {
         return super.died();
     }
 
+    @Override
+    public int getValue() {
+        return super.getValue();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
 }
