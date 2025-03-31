@@ -1,6 +1,6 @@
 package students.items;
 
-public abstract class Grain extends Food {
+public class Grain extends Food {
 	private int mat_age;
 	private int death_age;
 	private int montery_val;
@@ -19,30 +19,28 @@ public abstract class Grain extends Food {
 		counter++;
 	}
 
-    @Override
     public int tick() {
-        return super.tick();
+		this.age += 1;
+
+		return age;
     }
 
-    @Override
     public void setAge(int temp_age) {
-        super.setAge(temp_age);
+        age = temp_age;
     }
 
-    @Override
     public String died() {
-        if (age > death_age) {
-            return "Food Item is dead!";
+        if (this.age > this.death_age) {
+            return "True";
         } else {
-            return "Food Item isn't dead!";
+            return "False";
         }
 
     }
 
-    @Override
     public int getValue() {
-    	if (age > mat_age) {
-			return montery_val;
+    	if (this.age > this.mat_age) {
+			return this.montery_val;
 		}
 		return 0;
     }

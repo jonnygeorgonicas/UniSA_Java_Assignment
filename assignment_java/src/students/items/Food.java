@@ -1,6 +1,6 @@
 package students.items;
 
-public abstract class Food extends Item {
+public class Food extends Item {
 	private int cost;
 	
 	public Food() {
@@ -14,5 +14,10 @@ public abstract class Food extends Item {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+	@Override
+	public String toString() {
+		return null;
+	}
 
 }

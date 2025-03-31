@@ -1,6 +1,6 @@
 package students.items;
 
-public abstract class UntilledSoil extends Item {
+public class UntilledSoil extends Item {
 	private int mat_age;
 	private int death_age;
 	private int montery_val;
@@ -26,16 +26,15 @@ public abstract class UntilledSoil extends Item {
 	}
 
 
-    @Override
     public int getValue() {
-    	if (age > mat_age) {
-			return montery_val;
+    	if (this.age > this.mat_age) {
+			return this.montery_val;
 		}
 		return 0;
     }
     
 	public String died() {
-			return "UntilledSoil cannot die!";
+			return "False";
 	}
 
     public String toString() {

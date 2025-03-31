@@ -20,7 +20,7 @@ public abstract class Item {
 	}
 
 	public void setAge(int temp_age) {
-		this.age = temp_age;
+		age = temp_age;
 	}
 
 	public String died() {
@@ -31,7 +31,7 @@ public abstract class Item {
 	}
 
 	public int getValue() {
-		if (age > mat_age) {
+		if (this.age > this.mat_age) {
 			return montery_val;
 		}
 		return 0;

@@ -1,6 +1,6 @@
 package students.items;
 
-public abstract class Weed extends Item {
+public class Weed extends Item {
 	private int mat_age;
 	private int death_age;
 	private int montery_val;
@@ -15,27 +15,26 @@ public abstract class Weed extends Item {
 		cost = 0;
 	}
 
-	public int tick() {
+    public int tick() {
 		this.age += 1;
 
 		return age;
-	}
+    }
 
-	public void setAge(int temp_age) {
-		this.age = temp_age;
-	}
+    public void setAge(int temp_age) {
+        age = temp_age;
+    }
 
 
-    @Override
     public int getValue() {
-    	if (age > mat_age) {
-			return montery_val;
+    	if (this.age > this.mat_age) {
+			return this.montery_val;
 		}
 		return 0;
     }
     
 	public String died() {
-			return "Weed cannot die";
+			return "False";
 	}
 
     public String toString() {
