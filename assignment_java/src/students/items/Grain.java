@@ -7,12 +7,16 @@ public abstract class Grain extends Food {
 	private int age;
 	private int cost;
 	
+	private static int counter;
+	
 	public Grain() {
 		mat_age = 2;
 		death_age = 6;
 		montery_val = 2;
 		age = 0;
 		cost = 1;
+		
+		counter++;
 	}
 
     @Override
@@ -37,7 +41,10 @@ public abstract class Grain extends Food {
 
     @Override
     public int getValue() {
-        return super.getValue();
+    	if (age > mat_age) {
+			return montery_val;
+		}
+		return 0;
     }
 
     @Override
@@ -51,6 +58,10 @@ public abstract class Grain extends Food {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+    
+    public static int getGenerationCount() {
+    	return counter;
     }
 
 }
