@@ -1,7 +1,11 @@
 package students.items;
 
 public abstract class Food extends Item {
-    private int cost = 0;
+	private int cost;
+	
+	public Food() {
+		cost = 0;
+	}
 
     public int getCost() {
         return cost;

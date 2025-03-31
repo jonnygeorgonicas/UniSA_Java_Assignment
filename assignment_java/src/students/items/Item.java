@@ -1,10 +1,17 @@
 package students.items;
 
 public abstract class Item {
-	private int age = 0;
-	private int mat_age = 0;
-	private int death_age = 0;
-	private int montery_val = 0;
+	private int age;
+	private int mat_age;
+	private int death_age;
+	private int montery_val;
+	
+	public Item() {
+		age = 0;
+		mat_age = 0;
+		death_age = 0;
+		montery_val = 0;
+	}
 
 	public int tick() {
 		this.age += 1;
