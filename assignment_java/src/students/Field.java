@@ -30,6 +30,16 @@ public class Field extends Item{
 		}
 	}
 
+	public int tick() {
+		
+		for (int i = 0; i < fieldArray.length; i++) {
+			for (int j = 0; j < fieldArray.length; j++) {
+				//ticks every item in the field
+				fieldArray[i][j].tick();
+			}
+		}
+	}
+
 
 	public void till(int pos1, int pos2) {
 		if (fieldArray[pos1][pos2] != null) {
@@ -85,4 +95,30 @@ public class Field extends Item{
 		//returns the total monetary value of each item in the field
 		return sum;
 	}
+	
+	@Override
+	public String toString() {
+		//StringBuilder is used to capture a mutable sequence of characters
+		StringBuilder sb = new StringBuilder();
+		
+		int height = fieldArray.length;
+		int width = fieldArray[0].length;
+		
+		
+		sb.append("  ");
+		for (int col = 1; col <= width; col++) {
+			sb.append(String.format("%2d ", col));
+		}
+		sb.append("\n");
 
+	    // Grid rows
+	    for (int row = 0; row < height; row++) {
+	        sb.append(String.format("%2d ", row + 1)); // Row label
+	        for (int col = 0; col < width; col++) {
+	            sb.append(fieldArray[row][col] + "  "); // Placeholder for object representation
+	        }
+	        sb.append("\n");
+	    }
+
+	    return sb.toString();
+	}
