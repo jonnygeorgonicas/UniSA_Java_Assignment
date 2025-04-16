@@ -29,18 +29,38 @@ public class Field extends Item{
 			}
 		}
 	}
-
+	
 	public int tick() {
 		
 		for (int i = 0; i < fieldArray.length; i++) {
 			for (int j = 0; j < fieldArray.length; j++) {
 				//ticks every item in the field
 				fieldArray[i][j].tick();
+				
+				if (fieldArray[i][j] instanceof Soil) {
+					System.out.println("fieldArray element at " + i + " " + j + " is Soil");
+					
+					double percent = 0.20;
+					
+					//triggers 20 percent chance
+					if (Math.random() < percent)
+					{
+						System.out.println("Weed has been created!");
+						fieldArray[i][j] = w;
+						System.out.println(fieldArray[i][j]);
+					}
+					
+				}
+				
+				if (fieldArray[i][j].died() == true) {
+					System.out.println(fieldArray[i][j] + " item has died!");
+					fieldArray[i][j] = us;
+				}
 			}
 		}
+		return 0;
 	}
-
-
+	
 	public void till(int pos1, int pos2) {
 		if (fieldArray[pos1][pos2] != null) {
 		Soil s = new Soil();
@@ -67,7 +87,6 @@ public class Field extends Item{
 			grainCreate += 1;
 		}
 	}
-	
 	public int getValue() {
 		//sums the values for the whole field
 		int sum = 0;
@@ -95,7 +114,7 @@ public class Field extends Item{
 		//returns the total monetary value of each item in the field
 		return sum;
 	}
-	
+
 	@Override
 	public String toString() {
 		//StringBuilder is used to capture a mutable sequence of characters
@@ -122,3 +141,37 @@ public class Field extends Item{
 
 	    return sb.toString();
 	}
+
+	public String getSummary() {
+		int soilCount = 0;
+		int untilledCount = 0;
+		int weedCount = 0;
+		
+		for (int i = 0; i < fieldArray.length; i++) {
+			for (int j = 0; j < fieldArray.length; j++) {
+				if (fieldArray[i][j] instanceof Soil) {
+					soilCount += 1;
+				}
+				if (fieldArray[i][j] instanceof UntilledSoil) {
+					untilledCount += 1;
+				}
+				if (fieldArray[i][j] instanceof Weed) {
+					weedCount += 1;
+				}
+			}
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Apples:        " + appleCount + "\n");
+		sb.append("Grain:         " + grainCount + "\n");
+		sb.append("Soil:          " + soilCount + "\n");
+		sb.append("Untilled:      " + untilledCount + "\n");
+		sb.append("Weed:          " + weedCount + "\n");
+		sb.append("For a total of $" + getValue() + "\n");
+		sb.append("Total apples created: " + appleCreate + "\n");
+		sb.append("Total grain created: " + grainCreate + "\n");
+		
+		return sb.toString();
+		}
+
+}
