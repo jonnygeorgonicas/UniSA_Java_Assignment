@@ -31,21 +31,17 @@ public class Field extends Item{
 	}
 	
 	public int tick() {
-		
 		for (int i = 0; i < fieldArray.length; i++) {
 			for (int j = 0; j < fieldArray.length; j++) {
 				//ticks every item in the field
 				fieldArray[i][j].tick();
 				
-				if (fieldArray[i][j] instanceof Soil) {
-					System.out.println("fieldArray element at " + i + " " + j + " is Soil");
-					
+				if (fieldArray[i][j] instanceof Soil) {				
 					double percent = 0.20;
 					
 					//triggers 20 percent chance
 					if (Math.random() < percent)
 					{
-						System.out.println("Weed has been created!");
 						fieldArray[i][j] = w;
 						System.out.println(fieldArray[i][j]);
 					}
@@ -53,7 +49,6 @@ public class Field extends Item{
 				}
 				
 				if (fieldArray[i][j].died() == true) {
-					System.out.println(fieldArray[i][j] + " item has died!");
 					fieldArray[i][j] = us;
 				}
 			}
