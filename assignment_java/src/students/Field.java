@@ -32,7 +32,17 @@ public class Field extends Item{
 
 
 	public void till(int pos1, int pos2) {
-		//Add check for index being out of scope of the array
+		if (fieldArray[pos1][pos2] != null) {
 		Soil s = new Soil();
 		fieldArray[pos1][pos2] = s;
+		}
 	}
+	
+	public Object get(int pos1, int pos2) {
+		if (fieldArray[pos1][pos2] != null) {
+		Object res = fieldArray[pos1][pos2];
+		return res;
+		}
+		return null;
+	}
+
