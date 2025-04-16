@@ -15,6 +15,14 @@ public class Field extends Item{
 	
 	public Field(int height, int width)
 	{
+		this.fieldArray = new Item[height][width];
+		
+		for (int i = 0; i < fieldArray.length; i++) {
+			for (int j = 0; j < fieldArray.length; j++) {
+				fieldArray[i][j] = s;
+		
+			}
+		}
 	}
 	
 }
