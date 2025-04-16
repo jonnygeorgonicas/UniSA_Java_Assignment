@@ -45,4 +45,26 @@ public class Field extends Item{
 		}
 		return null;
 	}
+	
+	public void plant(int pos1, int pos2, Item item) {
+		//stores a given Item at a given location 
+		fieldArray[pos1][pos2] = item;
+		
+		if (fieldArray[pos1][pos2] instanceof Apples) {
+			appleCreate += 1;
+		}
+		if (fieldArray[pos1][pos2] instanceof Grain) {
+			grainCreate += 1;
+		}
+	}
+	
+	public int getValue() {
+		//sums the values for the whole field
+		int sum = 0;
+		//used to check the mat age of the given crop to register
+		int count = 0;
+		
+		//returns the total monetary value of each item in the field
+		return sum;
+	}
 
