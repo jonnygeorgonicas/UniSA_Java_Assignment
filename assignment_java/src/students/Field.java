@@ -64,6 +64,24 @@ public class Field extends Item{
 		//used to check the mat age of the given crop to register
 		int count = 0;
 		
+		for (int i = 0; i < fieldArray.length; i++) {
+			for (int j = 0; j < fieldArray.length; j++) {
+				//calculates sum of the entire field 
+				sum += fieldArray[i][j].getValue();
+				
+				//used to find the mat age of the given crop
+				count = fieldArray[i][j].getValue();
+				
+				//checks if the given crop is an apple or grain and if it has matured
+				if (fieldArray[i][j] instanceof Apples && count > 0) {
+					appleCount += 1;
+				}
+				if (fieldArray[i][j] instanceof Grain && count > 0) {
+					grainCount += 1;
+				}
+				
+			}
+		}
 		//returns the total monetary value of each item in the field
 		return sum;
 	}
