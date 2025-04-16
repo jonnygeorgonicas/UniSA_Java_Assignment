@@ -15,6 +15,11 @@ public class Field extends Item{
 	
 	public Field(int height, int width)
 	{
+		this.appleCreate = 0;
+		this.grainCreate = 0;
+		this.appleCount = 0;
+		this.grainCount = 0;
+		
 		this.fieldArray = new Item[height][width];
 		
 		for (int i = 0; i < fieldArray.length; i++) {
@@ -24,5 +29,10 @@ public class Field extends Item{
 			}
 		}
 	}
-	
-}
+
+
+	public void till(int pos1, int pos2) {
+		//Add check for index being out of scope of the array
+		Soil s = new Soil();
+		fieldArray[pos1][pos2] = s;
+	}
