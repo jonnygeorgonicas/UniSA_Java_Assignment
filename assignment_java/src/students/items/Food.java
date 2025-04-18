@@ -4,7 +4,7 @@ public class Food extends Item {
 	private int cost;
 	
 	public Food() {
-		cost = 0;
+		
 	}
 
     public int getCost() {
