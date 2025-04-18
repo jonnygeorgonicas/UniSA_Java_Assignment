@@ -1,6 +1,6 @@
 package students.items;
 
-public abstract class Soil extends Item {
+public class Soil extends Item {
 	private int mat_age;
 	private int death_age;
 	private int montery_val;
@@ -8,6 +8,7 @@ public abstract class Soil extends Item {
 	private int cost;
 	
 	public Soil() {
+		//uses Integer.MAX_VALUE to represent infinity
 		mat_age = Integer.MAX_VALUE;
 		death_age = Integer.MAX_VALUE;
 		montery_val = 0;
@@ -34,8 +35,8 @@ public abstract class Soil extends Item {
 		return 0;
     }
     
-	public String died() {
-			return "Soil cannot die!";
+	public boolean died() {
+			return false;
 	}
 
     public String toString() {
