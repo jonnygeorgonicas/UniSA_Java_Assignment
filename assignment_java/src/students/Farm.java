@@ -113,7 +113,6 @@ public class Farm extends Field{
 							System.out.println("Not enough funds.");
 						}
 					} else {
-						System.out.println(cropChoice);
 						System.out.println("Invalid crop selection.");
 					}
 				} else {
