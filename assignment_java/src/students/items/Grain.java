@@ -5,7 +5,6 @@ public class Grain extends Food {
 	private int death_age;
 	private int montery_val;
 	private int age;
-	private int cost;
 	
 	private static int counter;
 	
@@ -14,7 +13,7 @@ public class Grain extends Food {
 		death_age = 6;
 		montery_val = 2;
 		age = 0;
-		cost = 1;
+		super.setCost(1);
 		
 		counter++;
 	}
@@ -29,11 +28,11 @@ public class Grain extends Food {
         age = temp_age;
     }
 
-    public String died() {
+    public boolean died() {
         if (this.age > this.death_age) {
-            return "True";
+            return true;
         } else {
-            return "False";
+            return false;
         }
 
     }
