@@ -8,13 +8,14 @@ public class UntilledSoil extends Item {
 	private int cost;
 	
 	public UntilledSoil() {
+		//uses Integer.MAX_VALUE to represent infinity
 		mat_age = Integer.MAX_VALUE;
 		death_age = Integer.MAX_VALUE;
 		montery_val = -1;
 		age = 0;
 		cost = 0;
 	}
-
+	
 	public int tick() {
 		this.age += 1;
 
@@ -33,8 +34,8 @@ public class UntilledSoil extends Item {
 		return 0;
     }
     
-	public String died() {
-			return "False";
+	public boolean died() {
+			return false;
 	}
 
     public String toString() {
