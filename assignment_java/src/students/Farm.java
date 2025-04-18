@@ -1,10 +1,16 @@
 package students;
 import students.Field;
+import students.items.Apples;
+import students.items.Grain;
+import students.items.Item;
+
 import java.util.Scanner;
 
 public class Farm extends Field{
 	String Option;
 	int fund;
+	Apples a = new Apples();
+	Grain g = new Grain();
 	
 	public Farm(int fieldWidth, int fieldHeight, int startingFunds)
 	{
@@ -17,12 +23,13 @@ public class Farm extends Field{
 	
 	public void run(Field f)
 	{
+		Scanner Op = new Scanner(System.in);
+		boolean operating = true;
 		
+		while (operating) {
 		System.out.println(f);
 		
-		System.out.println("Bank balance: $" + this.fund);
-		
-		Scanner Op = new Scanner(System.in);
+		System.out.println("Bank balance: $" + this.fund + "\n");
 			
 		System.out.println("Enter your next action:");
 		System.out.println("t x y: till");
@@ -33,33 +40,110 @@ public class Farm extends Field{
 		System.out.println("q: quit");		
 					
 			
-		String Option = Op.nextLine();
+		String input = Op.nextLine().trim();
+		String[] str_parts = input.split(" ");
 		
-		if ("t".equals(Option)) {
-			super.till(0, 0);
-		}
-		
-		if ("h".equals(Option)) {
-			//harvest method logic
-			}
-		
-		if ("p".equals(Option)) {
-			//add conditional to this conditional to buy apple or grain
+		try {
+			switch (str_parts[0]) {
+			case "t":
+				if (str_parts.length == 3) {
+					int x = Integer.parseInt(str_parts[1]);
+					int y = Integer.parseInt(str_parts[2]);
+					super.till(x, y);
+				}
+					else {
+						System.out.println("Invalid input format for till.");
+					}
+					break;
 			
-			super.plant(fund, fund, f);		}
-		
-		if ("s".equals(Option)) {
+			case "h":
+				if (str_parts.length == 3) {
+					int x = Integer.parseInt(str_parts[1]);
+					int y = Integer.parseInt(str_parts[2]);
+					
+					Object itemObj = super.get(x, y);
+					if (itemObj instanceof Item) {
+						Item item = (Item) itemObj;
+						int value = item.getValue();
+						
+						if (value > 0) {
+							this.fund += value;
+							super.till(x, y);
+							System.out.println("$" + value + " was made from the harvest");
+						} else {
+							System.out.println("Crop isn't mature yet.");
+						}
+					} else {
+						System.out.println("Nothing to harvest at this location.");
+					} 
+				} else {
+					System.out.println("invalid input format for the harvest command");
+					}
+				break;
+			case "p":
+				if (str_parts.length == 3) {
+					int x = Integer.parseInt(str_parts[1]);
+					int y = Integer.parseInt(str_parts[2]);
+					System.out.println("Enter:");
+					System.out.println(" - 'a' to buy an apple");
+					System.out.println(" - 'g' to buy grain");
+					
+					String cropChoice = Op.nextLine().trim();
+					
+					if (cropChoice.equals("a")) {
+						int cost = a.getCost();
+						if (this.fund >= cost) {
+							this.fund -= cost;
+							super.plant(x, y, a);
+						} else {
+							System.out.println("Not enough funds.");
+						}
+					}
+					
+					if (cropChoice.equals("g")) {
+						int cost = g.getCost();
+						if (this.fund >= cost) {
+							this.fund -= cost;
+							super.plant(x, y, g);
+						} else {
+							System.out.println("Not enough funds.");
+						}
+					} else {
+						System.out.println("Invalid crop selection.");
+					}
+				} else {
+					System.out.println("Invalid input format for the plant command");
+				}
+				break;
+				
+		case "s":
 			System.out.println("\n" + super.getSummary());
-			}
-		
-		if ("w".equals(Option)) {
-			super.tick();
-		}
+			break;
 			
-		if ("q".equals(Option)) {
+		case "w":
+			super.tick();
+			break;
+			
+		case "q":
 			System.out.println("Quitted");
-			Op.close();
+			operating = false;
+			break;
+
+		default:
+			System.out.println("unrecognised command.");
+			break;
+			}
 		}
+		catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
 		}
 	}
+		Op.close();
+	}
+	
+}
+
+
+
+
 	
