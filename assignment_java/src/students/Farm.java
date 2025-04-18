@@ -17,8 +17,6 @@ public class Farm extends Field{
 		super(fieldHeight, fieldWidth);
 		Field f = new Field(fieldHeight, fieldWidth);
 		this.fund = startingFunds;
-	    //Seem to be a error with the varying sizes of arrays under 10x10
-	    //How to test it: System.out.println(f);
 	}
 	
 	public void run(Field f)
@@ -88,27 +86,34 @@ public class Farm extends Field{
 					System.out.println(" - 'a' to buy an apple");
 					System.out.println(" - 'g' to buy grain");
 					
-					String cropChoice = Op.nextLine().trim();
+					String cropChoice = Op.nextLine().trim().toLowerCase();
 					
 					if (cropChoice.equals("a")) {
 						int cost = a.getCost();
 						if (this.fund >= cost) {
+							System.out.println(this.fund);
 							this.fund -= cost;
-							super.plant(x, y, a);
+							super.plant(x, y, new Apples());
+							System.out.println(cost);
+							System.out.println(this.fund);
 						} else {
 							System.out.println("Not enough funds.");
 						}
 					}
 					
-					if (cropChoice.equals("g")) {
+					else if (cropChoice.equals("g")) {
 						int cost = g.getCost();
 						if (this.fund >= cost) {
+							System.out.println(this.fund);
 							this.fund -= cost;
-							super.plant(x, y, g);
+							super.plant(x, y, new Grain());
+							System.out.println(cost);
+							System.out.println(this.fund);
 						} else {
 							System.out.println("Not enough funds.");
 						}
 					} else {
+						System.out.println(cropChoice);
 						System.out.println("Invalid crop selection.");
 					}
 				} else {
