@@ -8,6 +8,7 @@ public class Weed extends Item {
 	private int cost;
 	
 	public Weed() {
+		//uses Integer.MAX_VALUE to represent infinity
 		mat_age = Integer.MAX_VALUE;
 		death_age = Integer.MAX_VALUE;
 		montery_val = -1;
@@ -33,8 +34,8 @@ public class Weed extends Item {
 		return 0;
     }
     
-	public String died() {
-			return "False";
+	public boolean died() {
+			return false;
 	}
 
     public String toString() {
